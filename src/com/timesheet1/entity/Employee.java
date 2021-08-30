@@ -23,6 +23,9 @@ public class Employee  implements Serializable {
         this.iBan = iBan;
     }
 
+    public Employee() {
+    }
+
     public int getAmount() {
         return amount;
     }
