@@ -14,7 +14,6 @@ import java.util.Scanner;
 public class EmployeeService implements EmployeeRepository {
 
 
-    @Override
     public void createEmployee(int id, String firstName, String lastName, Role role, int amount, int iBan) {
         Employee employee = new Employee(id, firstName, lastName, role, amount, iBan);
 
@@ -24,7 +23,7 @@ public class EmployeeService implements EmployeeRepository {
         DataBase.EMPLOYEE_TABLE.put(employee.getId(), employee);
     }
 
-    public void readFromClient() throws IOException {
+    public void readeEmployeesFromClient() throws IOException {
         File file = new File("D:\\Work Place\\timesheet1\\NoDBTimeSheet\\src\\Client.txt");
         List<Employee> employeeList = new ArrayList<>();
 
@@ -32,14 +31,16 @@ public class EmployeeService implements EmployeeRepository {
 
         String line;
         try {
-            while ((line = scanner.nextLine()) != null) {
-                Employee employee = new Employee(Integer.parseInt(scanner.next()), scanner.next(), scanner.next(), Role.valueOf(scanner.next()), Integer.parseInt(scanner.next()), Integer.parseInt(scanner.next()));
-                employeeList.add(employee);
+            while (scanner.hasNext()) {
+                line = scanner.nextLine();
+                String[] employee = line.split(" ");
+                employeeList.add(new Employee(Integer.parseInt(employee[0]), employee[1], employee[2], Role.valueOf(employee[3]), Integer.parseInt(employee[4]), Integer.parseInt(employee[5])));
+
             }
 
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             throw new RuntimeException("List is done");
-        }finally {
+        } finally {
             for (Employee employee : employeeList) {
                 DataBase.EMPLOYEE_TABLE.put(employee.getId(), employee);
             }
@@ -49,22 +50,39 @@ public class EmployeeService implements EmployeeRepository {
 
     }
 
-        @Override
-        public void addBalanceToEmployee () {
-
-        }
-
-        @Override
-        public void getAllEmployee () {
-            Collection<Employee> employees = DataBase.EMPLOYEE_TABLE.values();
-            for (Employee employee : employees) {
-                System.out.println(employee.toString());
+    @Override
+    public void addBalanceToEmployee(int employeeId , int balance) {
+        Collection<Employee> employees = DataBase.EMPLOYEE_TABLE.values();
+        for (Employee employee : employees) {
+            if (employee.getId() == employeeId) {
+                int oldBalance = employee.getAmount();
+                employee.setAmount(oldBalance + balance);
+                System.out.println("The new balance of the employee is " + employee.getAmount());
             }
         }
 
+    }
 
-        @Override
-        public Employee getEmployeeById ( int id){
-            return null;
+    @Override
+    public void getAllEmployee() {
+        Collection<Employee> employees = DataBase.EMPLOYEE_TABLE.values();
+        for (Employee employee : employees) {
+            System.out.println(employee.toString());
         }
     }
+
+
+    @Override
+    public Employee getEmployeeById(int id) {
+        Collection<Employee> employees = DataBase.EMPLOYEE_TABLE.values();
+        for (Employee employee : employees) {
+            if (employee.getId() == id) {
+                System.out.println(employee);
+                return employee;
+            }
+        }
+        System.out.println("The employee is not in the list");
+        return null;
+
+    }
+}

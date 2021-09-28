@@ -6,9 +6,10 @@ import java.util.Collection;
 import java.util.List;
 
 public interface EmployeeRepository {
-    void createEmployee(int id, String firstName, String lastName, Role role, int amount, int iBan);
 
-    void addBalanceToEmployee();
+
+
+    void addBalanceToEmployee(int employeeId,int balance);
 
     void getAllEmployee();
 
