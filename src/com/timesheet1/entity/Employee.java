@@ -1,6 +1,6 @@
 package com.timesheet1.entity;
 
-import com.timesheet1.repository.Role;
+import com.timesheet1.util.Role;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -10,7 +10,7 @@ public class Employee  implements Serializable {
     private int id;
     private String firstName;
     private String lastName;
-    private com.timesheet1.repository.Role role;
+    private Role role;
     private int amount;
     private int iBan;
 

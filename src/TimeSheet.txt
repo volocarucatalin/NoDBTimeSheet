@@ -1,0 +1,4 @@
+3 4 DayWork DayWork DayWork DayWork Off Off
+4 5 DayWork DayWork DayWork DayWork DayWork Off
+6 6 DayWork DayWork DayWork DayWork DayWork DayWork
+5 3 DayWork DayWork DayWork Off Off Off

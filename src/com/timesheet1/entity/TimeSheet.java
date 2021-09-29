@@ -4,18 +4,18 @@ import java.util.Objects;
 
 public class TimeSheet {
 
-    private Employee employee;
+    private int employeeId;
     private int numberOfDays;
-    private boolean approved;
     private String monday;
     private String tuesday;
     private String wednesday;
     private String thursday;
     private String friday;
     private String saturday;
+    private boolean approved = false;
 
-    public TimeSheet(Employee employee, int numberOfDays, boolean approved, String monday, String tuesday, String wednesday, String thursday, String friday, String saturday) {
-        this.employee = employee;
+    public TimeSheet(int employee, int numberOfDays, boolean approved, String monday, String tuesday, String wednesday, String thursday, String friday, String saturday) {
+        this.employeeId = employee;
         this.numberOfDays = numberOfDays;
         this.approved = approved;
         this.monday = monday;
@@ -26,12 +26,15 @@ public class TimeSheet {
         this.saturday = saturday;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public TimeSheet() {
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public int getNumberOfDays() {
@@ -103,11 +106,26 @@ public class TimeSheet {
         if (this == o) return true;
         if (!(o instanceof TimeSheet)) return false;
         TimeSheet timeSheet = (TimeSheet) o;
-        return getNumberOfDays() == timeSheet.getNumberOfDays() && isApproved() == timeSheet.isApproved() && Objects.equals(getEmployee(), timeSheet.getEmployee()) && Objects.equals(getMonday(), timeSheet.getMonday()) && Objects.equals(getTuesday(), timeSheet.getTuesday()) && Objects.equals(getWednesday(), timeSheet.getWednesday()) && Objects.equals(getThursday(), timeSheet.getThursday()) && Objects.equals(getFriday(), timeSheet.getFriday()) && Objects.equals(getSaturday(), timeSheet.getSaturday());
+        return getNumberOfDays() == timeSheet.getNumberOfDays() && isApproved() == timeSheet.isApproved() && Objects.equals(getEmployeeId(), timeSheet.getEmployeeId()) && Objects.equals(getMonday(), timeSheet.getMonday()) && Objects.equals(getTuesday(), timeSheet.getTuesday()) && Objects.equals(getWednesday(), timeSheet.getWednesday()) && Objects.equals(getThursday(), timeSheet.getThursday()) && Objects.equals(getFriday(), timeSheet.getFriday()) && Objects.equals(getSaturday(), timeSheet.getSaturday());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEmployee(), getNumberOfDays(), isApproved(), getMonday(), getTuesday(), getWednesday(), getThursday(), getFriday(), getSaturday());
+        return Objects.hash(getEmployeeId(), getNumberOfDays(), isApproved(), getMonday(), getTuesday(), getWednesday(), getThursday(), getFriday(), getSaturday());
+    }
+
+    @Override
+    public String toString() {
+        return "TimeSheet{" +
+                "employeeId=" + employeeId +
+                ", numberOfDays=" + numberOfDays +
+                ", monday='" + monday + '\'' +
+                ", tuesday='" + tuesday + '\'' +
+                ", wednesday='" + wednesday + '\'' +
+                ", thursday='" + thursday + '\'' +
+                ", friday='" + friday + '\'' +
+                ", saturday='" + saturday + '\'' +
+                ", approved=" + approved +
+                '}';
     }
 }
