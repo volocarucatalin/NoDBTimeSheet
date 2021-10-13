@@ -23,7 +23,10 @@ public class  Service {
         System.out.println("Do you want to find one employee please enter number(4)");
         System.out.println("Read all your TimeSheets (5)");
         System.out.println("Show all your TimeSheets (6)");
+        System.out.println("Approve TimeSheets please press(7)");
+        System.out.println("For Time Sheet balance please press(8) ");
         System.out.println("If you want to exit please press (0)");
+
          i = Integer.parseInt(bufferedReader.readLine());
          readUserResponse(i);
     }
@@ -65,7 +68,11 @@ public class  Service {
                 timeSheetServices.showAllTimeSheet();
                 listOfOptions();
             case 7:
-                System.out.println("Not implemented");
+                timeSheetServices.timeSheetApproval();
+                listOfOptions();
+            case 8:
+                timeSheetServices.timeSheetBalance();
+                listOfOptions();
         }
     }
 }
